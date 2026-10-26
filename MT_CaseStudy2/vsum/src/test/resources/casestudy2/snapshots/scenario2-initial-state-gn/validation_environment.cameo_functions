@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cameo_functions:FunctionsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cameo_functions="http://vitruv.tools/cameo_functions">
+  <functions name="Support Modular Test Bench Integration" dependencies="//@functions.1">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Enable Modular Brake system Integration">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Safety Reliable operation" dependencies="//@functions.3 //@functions.4 //@functions.5">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Monitor Brake Disc Temperature">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Ensure Mechanical stability">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Provide Emergency Shutdown">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Support Concrete Test Case Execution" dependencies="//@functions.7 //@functions.8 //@functions.31">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Enable Emergency Braking Tests">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.1"/>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.18"/>
+  </functions>
+  <functions name="Support Repeated Braking Cycles">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Simulation of Vehicle Dynamics" dependencies="//@functions.10 //@functions.11 //@functions.12 //@functions.13 //@functions.14 //@functions.26 //@functions.28 //@functions.29 //@functions.30">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Simulate Driver">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Simulate Driving Resistances">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Generate Rotational Speed &amp; Torque">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Transmit Rotational speed &amp; Torque">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Enable Brake Actuation" dependencies="//@functions.15 //@functions.16">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Generate Simulated Brake Pedal Position">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Control Brake Pressure for Hydraulic Braking">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.0"/>
+  </functions>
+  <functions name="Measure , Record Data &amp; Control system behaviour" dependencies="//@functions.18 //@functions.19 //@functions.20 //@functions.21 //@functions.22 //@functions.23 //@functions.24 //@functions.25 //@functions.32">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Measure Rotational Speed of shaft">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.48"/>
+  </functions>
+  <functions name="Measure Braking Torque of the shaft">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Monitor System Operating state">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Control Rotational Direction">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Control Rotational speed">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Control Torque of the shaft">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </functions>
+  <functions name="Control Braking Torque">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.0"/>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.1"/>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.19"/>
+  </functions>
+  <functions name="Record Measurement data">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.49"/>
+  </functions>
+  <functions name="Simulation of wheel speed" dependencies="//@functions.27">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.44"/>
+  </functions>
+  <functions name="Simulate Wheel slip">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.42"/>
+  </functions>
+  <functions name="Simulation of wheel accleration">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.50"/>
+  </functions>
+  <functions name="Simulation of yaw rate">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.50"/>
+  </functions>
+  <functions name="Simulation of steering angle">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.50"/>
+  </functions>
+  <functions name="Enable Tests with varying frction conditions to validate the ABS function">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.42"/>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.46"/>
+  </functions>
+  <functions name="Measure Brake Pressure">
+    <generations>Gn</generations>
+    <satisfies href="validation_environment.cameo_requirements#//@requirements.51"/>
+  </functions>
+</cameo_functions:FunctionsRepository>

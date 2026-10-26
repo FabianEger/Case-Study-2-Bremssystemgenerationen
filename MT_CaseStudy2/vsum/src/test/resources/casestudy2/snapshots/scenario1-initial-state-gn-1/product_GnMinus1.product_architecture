@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ASCII"?>
+<product_architecture:ProductArchitectureRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:product_architecture="http://vitruv.tools/product_architecture" generation="Gn-1">
+  <components name="Bremssystem">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.29"/>
+  </components>
+  <components name="Fahrbremse" parent="//@components.0">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.1"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.7"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.8"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.9"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.10"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.12"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.14"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.15"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.27"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </components>
+  <components name="Feststellbremse" parent="//@components.0">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.12"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.10"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.1"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.2"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.11"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.24"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.26"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.27"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </components>
+  <components name="Bremspedal" parent="//@components.1">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.4"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.13"/>
+  </components>
+  <components name="Bremskraftverst&#xe4;rker" parent="//@components.1">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.18"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.6"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.2"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.3"/>
+  </components>
+  <components name="&#xdc;bertragungselemente" parent="//@components.1">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.20"/>
+  </components>
+  <components name="Radbremseinheiten" parent="//@components.1">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.0"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.17"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.9"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.3"/>
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.8"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.6"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.11"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.23"/>
+  </components>
+  <components name="Tandemhauptzylinder" parent="//@components.1">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.19"/>
+  </components>
+  <components name="Eingabeeinrichtung" parent="//@components.2">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.14"/>
+  </components>
+  <components name="Feststell-Mechanismus" parent="//@components.2">
+    <allocatedFunctions href="product_GnMinus1.product_functions#//@functions.12"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.25"/>
+  </components>
+  <components name="Bremspedal" typeName="Bremspedal1" kind="OPERATING_ELEMENT" parent="//@components.3"/>
+  <components name="Unterdruckpumpe" kind="ACTUATOR" parent="//@components.4"/>
+  <components name="Druckstange" kind="MECHANICAL_COMPONENT" parent="//@components.4"/>
+  <components name="Druckkammern" kind="MECHANICAL_COMPONENT" parent="//@components.4"/>
+  <components name="Bremsleitung / Bremsschlauch" kind="HYDRAULIC_COMPONENT" parent="//@components.5"/>
+  <components name="Bremsscheibe" kind="MECHANICAL_COMPONENT" parent="//@components.6"/>
+  <components name="Bremsbel&#xe4;ge" kind="MECHANICAL_COMPONENT" parent="//@components.6"/>
+  <components name="Bremskolben" kind="HYDRAULIC_COMPONENT" parent="//@components.6"/>
+  <components name="Verschlei&#xdf;sensor" kind="SENSOR" parent="//@components.6"/>
+  <components name="Tandemhauptzylinder" typeName="Tandemhauptzylinder1" kind="HYDRAULIC_COMPONENT" parent="//@components.7"/>
+  <components name="Eingabeverarbeitung" kind="CONTROL_UNIT" parent="//@components.8"/>
+  <components name="Aktor" kind="ACTUATOR" parent="//@components.9"/>
+  <components name="Steuerger&#xe4;t" kind="CONTROL_UNIT" parent="//@components.9"/>
+  <components name="Feststellen" kind="MECHANICAL_COMPONENT" parent="//@components.9"/>
+</product_architecture:ProductArchitectureRepository>

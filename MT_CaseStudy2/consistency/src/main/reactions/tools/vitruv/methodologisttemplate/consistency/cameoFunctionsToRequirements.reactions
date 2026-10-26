@@ -1,0 +1,23 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_requirements" as requirements
+import "http://vitruv.tools/cameo_functions" as functions
+import "http://vitruv.tools/cameo_architecture" as architecture
+
+reactions: functionsToRequirements
+in reaction to changes in functions
+execute actions in requirements
+
+reaction FunctionRenamed {
+	after attribute replaced at functions::Function[name]
+	call propagateFunctionName(affectedEObject)
+}
+
+routine propagateFunctionName(functions::Function function) {
+	match {
+		val requirement = retrieve requirements::Requirement corresponding to function
+	}
+	update {
+		requirement.name = function.name
+	}
+}

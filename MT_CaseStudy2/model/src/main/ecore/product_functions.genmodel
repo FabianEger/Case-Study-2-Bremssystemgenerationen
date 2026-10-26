@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/tools.vitruv.methodologisttemplate.model/target/generated-sources/ecore" creationIcons="false"
+    editDirectory="/product_functions.edit/src-gen" editorDirectory="/product_functions.editor/src-gen"
+    modelPluginID="product_functions" modelName="Product_functions" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="23.0"
+    copyrightFields="false" usedGenPackages="product_requirements.genmodel#//product_requirements" operationReflection="true" importOrganizing="true">
+  <foreignModel>product_functions.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Product_functions" disposableProviderFactory="true" ecorePackage="product_functions.ecore#/">
+    <genClasses ecoreClass="product_functions.ecore#//ProductFunctionsRepository">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_functions.ecore#//ProductFunctionsRepository/generation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_functions.ecore#//ProductFunctionsRepository/predecessor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference product_functions.ecore#//ProductFunctionsRepository/functions"/>
+    </genClasses>
+    <genClasses ecoreClass="product_functions.ecore#//ProductFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_functions.ecore#//ProductFunction/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_functions.ecore#//ProductFunction/general"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_functions.ecore#//ProductFunction/satisfies"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

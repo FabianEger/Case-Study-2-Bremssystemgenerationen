@@ -1,0 +1,43 @@
+import cameo_architecture.BlockRepository
+import cameo_architecture.Cameo_architectureFactory
+
+import "http://vitruv.tools/product_architecture" as productArchitecture
+import "http://vitruv.tools/cameo_architecture" as architecture
+
+// Case Study 2 - generation carry-over of the VE technical architecture.
+//
+// The V87 model keeps one validation configuration (test-bench set-up) per product generation.
+// When the product architecture of generation G is derived from generation P, the configuration of P
+// is carried over as the starting point for G ("Validation Configuration (G)"), referencing the same
+// test-bench blocks. The validation engineer then adds the measurement channels and interfaces that the
+// new validation needs require (slide 3, step 18).
+//
+reactions: productArchitectureToValidationArchitecture
+in reaction to changes in productArchitecture
+execute actions in architecture
+
+reaction ProductArchitectureRepositoryInsertedAsRoot {
+	after element productArchitecture::ProductArchitectureRepository inserted as root
+	with newValue.predecessor !== null
+	call carryOverValidationConfiguration(newValue)
+}
+
+routine carryOverValidationConfiguration(productArchitecture::ProductArchitectureRepository architectureRepository) {
+	update {
+		val blockRepository = architectureRepository.eResource.resourceSet.resources
+			.flatMap[contents].filter(BlockRepository).head
+		if (blockRepository !== null) {
+			val generation = architectureRepository.generation
+			val predecessorConfiguration = blockRepository.configurations
+				.findFirst[it.generation == architectureRepository.predecessor.generation]
+			val alreadyThere = blockRepository.configurations.exists[it.generation == generation]
+			if (predecessorConfiguration !== null && !alreadyThere) {
+				val configuration = Cameo_architectureFactory.eINSTANCE.createValidationConfiguration
+				configuration.name = "Validation Configuration (" + generation + ")"
+				configuration.generation = generation
+				configuration.parts.addAll(predecessorConfiguration.parts)
+				blockRepository.configurations.add(configuration)
+			}
+		}
+	}
+}

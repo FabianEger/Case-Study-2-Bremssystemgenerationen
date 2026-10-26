@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ASCII"?>
+<product_functions:ProductFunctionsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:product_functions="http://vitruv.tools/product_functions" generation="Gn-1">
+  <functions name="R&#xe4;der verz&#xf6;gern">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.5"/>
+  </functions>
+  <functions name="Kommunikation mit Steuerger&#xe4;t">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.27"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="St&#xf6;rung erkennen">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+  </functions>
+  <functions name="Verschlei&#xdf;-&#xdc;berwachung" general="//@functions.2">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.23"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="Assistenzsysteme">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.16"/>
+  </functions>
+  <functions name="ESP" general="//@functions.4">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.17"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.18"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.20"/>
+  </functions>
+  <functions name="Eingabekraft verst&#xe4;rken" general="//@functions.0">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.2"/>
+  </functions>
+  <functions name="ASR" general="//@functions.4">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.21"/>
+  </functions>
+  <functions name="W&#xe4;rme abf&#xfc;hren" general="//@functions.0"/>
+  <functions name="Partikel abf&#xfc;hren" general="//@functions.0"/>
+  <functions name="Feststellbremse-&#xdc;berwachung" general="//@functions.2">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="St&#xf6;rungen melden" general="//@functions.1">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="Fahrzeug feststellen">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.24"/>
+  </functions>
+  <functions name="Eingabe erfassen" general="//@functions.12">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.24"/>
+  </functions>
+  <functions name="Feststellbremse schalten" general="//@functions.12">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.1"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.24"/>
+  </functions>
+  <functions name="ESP-&#xdc;berwachung" general="//@functions.2">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="Bremsdruck-&#xdc;berwachung" general="//@functions.2">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.22"/>
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.28"/>
+  </functions>
+  <functions name="Bremsdruck umsetzen" general="//@functions.0">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.7"/>
+  </functions>
+  <functions name="Bremsassistent" general="//@functions.6">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.3"/>
+  </functions>
+  <functions name="Bremsdruck erzeugen" general="//@functions.0">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.7"/>
+  </functions>
+  <functions name="Bremsdruck &#xfc;bertragen" general="//@functions.0">
+    <satisfies href="product_GnMinus1.product_requirements#//@requirements.7"/>
+  </functions>
+</product_functions:ProductFunctionsRepository>

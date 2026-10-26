@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cameo_requirements:RequirementsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cameo_requirements="http://vitruv.tools/cameo_requirements">
+  <requirements text="The braking system test bench shall support braking force or equivalent braking torque levels in a controlled and repeatable manner, enabling evaluation of braking behavior under different braking intensities across all operating modes." Id="1.1" name="BrakingWithVariousBrakeForce" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall allow emergency braking operations decelerating a rotating brake component from 50 km/h to 0 km/h using the maximum available brake force" Id="1.2" name="EmergencyBrakeFrom50" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall support repeated braking cycles with variable brake force without the rotating brake component coming to a complete stop." Id="1.3" name="RepeatedBrakingWithoutStopingTheRotationOfTheBrakeDisc" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall allow braking operations with both forward and reverse rotation, including the reversal of the rotational direction of the brake component." Id="1.4" name="BrakingOperationsWithForwardAndReverseRotation" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="Parking brake mechanism can be easily integrated into the drum brake assembly without requiring additional systems" Id="1.5" name="Integrated Parking Brake Functionality" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="Drum brakes can generate high braking force with relatively low hydraulic pressure due to the self-energizing effect." Id="1.6" name="High Braking Force at Low Pressure" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="All load-bearing components shall be designed to withstand the maximum expected operational loads without failure or critical crack formation." Id="2.1" name="NoFailureUnderMaxLoad" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="All rotating components shall be designed to withstand the maximum operating speed without structural failure, excessive vibration, or critical resonance." Id="2.2" name="NoFailureUnderMaxSpeed" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall prevent resonance effects from vibrations induced by braking forces or other actuators such as electric machines." Id="2.3" name="NoCriticalEigenfrequencies" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The bearing arrangement should have maximize tilting rigidity and effectively absorb external forces and torques applied outside the bearing span (from the electric machine and braking system)." Id="2.4" name="Bearing Arrangement for Operational Loads" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The bearing concept shall support the radial and axial forces applied without introducing mechanical overconstraints or preload under normal operating conditions." Id="2.5" name="BearingSufficientlyDimensioned" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="All physical components of the system shall be manufacturable using conventional techniques such as turning, milling, laser cutting, and welding." Id="2.6" name="ManufacturableByConventionalMethods" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="It tends to increase preload as the shaft expands (due to heat), which can be beneficial in high-temperature environments where stability is required." Id="2.7" name="Thermal Expansion Accommodation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="More tolerant of misalignment between shaft and housing." Id="2.8" name="Alignment Stability">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The spread of the contact lines (large effective span between load centers) gives the system greater resistance to tilting and bending moments." Id="2.9" name="High Torsional Rigidity">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The second electric machine shall simulate realistic road load conditions including rolling resistance, aerodynamic drag, and gradient forces" Id="4.1" name="Road Load Simulation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The second electric machine shall apply both positive and negative torque to simulate uphill, downhill, and braking conditions." Id="4.5" name="Bidirectional Torque Capability" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The second electric machine shall include protection mechanisms to prevent damage under overload, excessive slip, or unexpected torque spikes during test scenarios." Id="4.6" name="Safety and Overload Protection" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The system shall simulate emergency braking maneuvers at varying speeds to assess ABS effectiveness in reducing stopping distance" Id="4.7" name="Emergency Braking Scenarios" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="The test bench shall allow rapid modulation of brake torque to validate ABS response during lock-up prevention" Id="4.8" name="Brake Torque Modulation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="It shall be possible to change the friction conditions by applying defined fluids (e.g., oil, water) without requiring extensive modifications to the setup." Id="4.11" name="Friction Change due to Fluid Application" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Brake Friction Modification</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The mechanical interface shall allow simple exchange of the brake system under test using standard tools, without major structural modifications." Id="5.1" name="Easy Brake System Exchange" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Modular Platform</categories>
+    <categories>Braking System</categories>
+  </requirements>
+  <requirements text="The brake caliper must be mounted laterally to the brake disc to enable compatibility with different brake system geometries." Id="5.2" name="EasyExchangeBrakeCaliper" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Modular Platform</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The brake caliper holder must allow quick repositioning of the brake caliper in all three spatial directions using elongated holes or equivalent adjustment features." Id="5.3" name="AdjustablePositionBrakeCaliper" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Modular Platform</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The brake caliper holder shall minimize the lever arm relative to the braking force to reduce structural loads." Id="5.4" name="ShortLeverArmBrakeCaliperHolder" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="Drum brakes can be packaged more easily within smaller wheel sizes compared to disc brakes, supporting compact vehicle designs." Id="5.5" name="Compatibility with Smaller Wheel Sizes" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="It shall be possible to change the friction conditions by replacing the friction material without requiring major changes to the test environment." Id="5.6" name="FrictionChangeByPadReplacement" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>Brake Friction Modification</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="Sensors (e.g., force, temperature, rotational speed) shall be placed close to the system under test while being protected against brake dust, heat, and fluids." Id="6.2" name="Sensor Integration and Protection" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The validation environment shall synchronously acquire all relevant measurement signals required for brake system validation." Id="6.7" name="Synchronized Signal Acquisition">
+    <generations>Gn-1</generations>
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="Derived by CPR 1 from the product function 'ABS' introduced in generation Gn. The validation environment shall enable the validation of this function; validation objectives, stimuli and measured variables are to be concretised by the validation engineer." Id="VN-Gn-F-01" name="Validation need: product function 'ABS'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_FUNCTION">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 1 from the product function 'ABS-&#xdc;berwachung' introduced in generation Gn. The validation environment shall enable the validation of this function; validation objectives, stimuli and measured variables are to be concretised by the validation engineer." Id="VN-Gn-F-02" name="Validation need: product function 'ABS-&#xdc;berwachung'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_FUNCTION">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 1 from the product function 'Raddrehzahlen erfassen' introduced in generation Gn. The validation environment shall enable the validation of this function; validation objectives, stimuli and measured variables are to be concretised by the validation engineer." Id="VN-Gn-F-03" name="Validation need: product function 'Raddrehzahlen erfassen'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_FUNCTION">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Raddrehzahlsensoren' (SENSOR) introduced in generation Gn. The validation environment shall physically integrate or simulate the measured variable of the sensor 'Raddrehzahlsensoren' and provide it to the system under test." Id="VN-Gn-A-01" name="Validation need: product component 'Raddrehzahlsensoren'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2: the remaining vehicle simulation has to be extended so that the driving and braking states required to validate the new product components of generation Gn can be represented. Triggered by: Raddrehzahlsensoren; Beschleunigungssensor; Bremsdrucksensor; Gierratensensor; Lenkwinkelsensor;" Id="VN-Gn-RVS" name="Validation need: extension of the remaining vehicle simulation (Gn)" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+    <categories>Remaining vehicle simulation</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Beschleunigungssensor' (SENSOR) introduced in generation Gn. The validation environment shall physically integrate or simulate the measured variable of the sensor 'Beschleunigungssensor' and provide it to the system under test." Id="VN-Gn-A-02" name="Validation need: product component 'Beschleunigungssensor'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Bremsdrucksensor' (SENSOR) introduced in generation Gn. The validation environment shall physically integrate or simulate the measured variable of the sensor 'Bremsdrucksensor' and provide it to the system under test." Id="VN-Gn-A-03" name="Validation need: product component 'Bremsdrucksensor'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Gierratensensor' (SENSOR) introduced in generation Gn. The validation environment shall physically integrate or simulate the measured variable of the sensor 'Gierratensensor' and provide it to the system under test." Id="VN-Gn-A-04" name="Validation need: product component 'Gierratensensor'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Lenkwinkelsensor' (SENSOR) introduced in generation Gn. The validation environment shall physically integrate or simulate the measured variable of the sensor 'Lenkwinkelsensor' and provide it to the system under test." Id="VN-Gn-A-05" name="Validation need: product component 'Lenkwinkelsensor'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE" restVehicleSimulationAffected="true">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'elektrische Regeleinheit' (CONTROL_UNIT) introduced in generation Gn. The validation environment shall support the integration of the control unit 'elektrische Regeleinheit' including its electrical and communication interfaces." Id="VN-Gn-A-06" name="Validation need: product component 'elektrische Regeleinheit'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Fahrbremse::Hydraulisch-Elektrischte-Regeleinheit' (STRUCTURE_ELEMENT) introduced in generation Gn. The validation environment shall integrate the product subsystem 'Hydraulisch-Elektrischte-Regeleinheit' into the system under investigation." Id="VN-Gn-A-07" name="Validation need: product component 'Hydraulisch-Elektrischte-Regeleinheit'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Ventilblock' (HYDRAULIC_COMPONENT) introduced in generation Gn. The validation environment shall physically integrate or virtually represent the hydraulic / actuating component 'Ventilblock' and allow it to be controlled by the system under test." Id="VN-Gn-A-08" name="Validation need: product component 'Ventilblock'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="Derived by CPR 2 from the product component 'Hydraulikpumpe' (HYDRAULIC_COMPONENT) introduced in generation Gn. The validation environment shall physically integrate or virtually represent the hydraulic / actuating component 'Hydraulikpumpe' and allow it to be controlled by the system under test." Id="VN-Gn-A-09" name="Validation need: product component 'Hydraulikpumpe'" status="IMAGINARY" classification="VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE">
+    <generations>Gn</generations>
+    <categories>Validation need</categories>
+  </requirements>
+  <requirements text="The validation environment shall enable operation over varying wheel slip conditions such as dry, wet, and icy roads" Id="4.4" references="//@requirements.29" name="Dynamic Slip Control" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="The validation environment shall provide a hydraulic circuit including ABS components." Id="4.12" references="//@requirements.39 //@requirements.40 //@requirements.41" name="ABS Hydraulic Circuit Simulation">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall provide signals required by the ABS controller." Id="4.13" references="//@requirements.32 //@requirements.33" name="Simulation of ABS Input Signals">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall support closed-loop interaction between rest vehicle simulation and brake system with its behaviour." Id="4.14" references="//@requirements.33" name="Closed-Loop Simulation">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall allow the ABS controller to actively modulate brake pressure." Id="4.15" references="//@requirements.29" name="ABS Control Intervention">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall support integration of an external brake ECU." Id="5.7" references="//@requirements.38" name="Brake ECU Integration">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall provide accurate wheel speed measurements required for ABS control and validation." Id="6.1" references="//@requirements.31 //@requirements.32" name="Wheel Speed Measurement" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="The system shall record recovered energy, braking torque distribution, wheel slip, and stopping distance to evaluate ABS and recuperative braking performance" Id="6.3" references="//@requirements.30" name="Measurement Data Acquisition and Evaluation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn</generations>
+    <categories>Test Bench with ABS &amp; Recuperative Braking</categories>
+  </requirements>
+  <requirements text="The validation environment shall acquire vehicle dynamics signals required for brake system validation (e.g. longitudinal acceleration, yaw rate and steering angle" Id="6.6" references="//@requirements.34 //@requirements.36 //@requirements.37" name="Vehicle Dynamics Measurement">
+    <generations>Gn</generations>
+  </requirements>
+  <requirements text="The validation environment shall measure the hydraulic brake pressure before and after the ABS modulation and provide it to the ABS controller." Id="6.8" references="//@requirements.35" name="Brake Pressure Measurement" status="IMAGINARY">
+    <generations>Gn</generations>
+    <categories>Proposed (not in V87)</categories>
+  </requirements>
+</cameo_requirements:RequirementsRepository>

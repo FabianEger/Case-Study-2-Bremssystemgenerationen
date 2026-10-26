@@ -1,0 +1,77 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_requirements" as requirements
+import "http://vitruv.tools/cameo_architecture" as architecture
+
+reactions: requirementsToArchitecture
+in reaction to changes in requirements
+execute actions in architecture
+
+reaction RequirementsRepositoryInsertedAsRoot {
+	after element requirements::RequirementsRepository inserted as root
+	call createCorrespondingRepository(newValue)
+}
+
+routine createCorrespondingRepository(requirements::RequirementsRepository requirementsRepository) {
+	match {
+		require absence of architecture::BlockRepository corresponding to requirementsRepository
+	}
+	create {
+		val blockRepository = new architecture::BlockRepository
+	}
+	update {
+		persistProjectRelative(requirementsRepository, blockRepository,
+			new File("").toString() + "cameo.cameo_architecture")
+		addCorrespondenceBetween(requirementsRepository, blockRepository)
+	}
+}
+
+reaction RequirementInsertedIntoRepository {
+	after element requirements::Requirement inserted in requirements::RequirementsRepository[requirements]
+	call createBlockForRequirement(affectedEObject, newValue)
+}
+
+routine createBlockForRequirement(requirements::RequirementsRepository requirementsRepository,
+		requirements::Requirement requirement) {
+	match {
+		require absence of architecture::Block corresponding to requirement
+		val blockRepository = retrieve architecture::BlockRepository corresponding to requirementsRepository
+	}
+	create {
+		val block = new architecture::Block
+	}
+	update {
+		block.name = requirement.name
+		blockRepository.blocks.add(block)
+		addCorrespondenceBetween(requirement, block)
+	}
+}
+
+reaction RequirementRenamed {
+	after attribute replaced at requirements::Requirement[name]
+	call propagateRequirementName(affectedEObject)
+}
+
+routine propagateRequirementName(requirements::Requirement requirement) {
+	match {
+		val block = retrieve architecture::Block corresponding to requirement
+	}
+	update {
+		block.name = requirement.name
+	}
+}
+
+reaction RequirementRemovedFromRepository {
+	after element requirements::Requirement removed from requirements::RequirementsRepository[requirements]
+	call deleteBlockForRequirement(oldValue)
+}
+
+routine deleteBlockForRequirement(requirements::Requirement requirement) {
+	match {
+		val block = retrieve architecture::Block corresponding to requirement
+	}
+	update {
+		removeObject(block)
+		removeCorrespondenceBetween(requirement, block)
+	}
+}

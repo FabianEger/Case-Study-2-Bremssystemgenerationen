@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="product_functions" nsURI="http://vitruv.tools/product_functions"
+    nsPrefix="product_functions">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Case Study 2: product developer view on the functional architecture of one brake-system generation (Cameo stereotype 'Funktion')."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductFunctionsRepository">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//ProductFunctionsRepository">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Functions model of the generation this generation was derived from (null for the baseline generation). Used by the CPRs to tell carried-over functions from new ones."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
+        eType="#//ProductFunction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductFunction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" eType="#//ProductFunction">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Generalisation in the Cameo function tree (e.g. ABS -> Assistenzsysteme)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="satisfies" upperBound="-1"
+        eType="ecore:EClass product_requirements.ecore#//ProductRequirement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Product requirements this function is allocated to (product-internal relation, step 15)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

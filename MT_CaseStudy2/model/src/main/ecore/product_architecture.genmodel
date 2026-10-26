@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/tools.vitruv.methodologisttemplate.model/target/generated-sources/ecore" creationIcons="false"
+    editDirectory="/product_architecture.edit/src-gen" editorDirectory="/product_architecture.editor/src-gen"
+    modelPluginID="product_architecture" modelName="Product_architecture" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="23.0"
+    copyrightFields="false" usedGenPackages="product_functions.genmodel#//product_functions product_requirements.genmodel#//product_requirements" operationReflection="true" importOrganizing="true">
+  <foreignModel>product_architecture.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Product_architecture" disposableProviderFactory="true" ecorePackage="product_architecture.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="product_architecture.ecore#//ComponentKind">
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/STRUCTURE_ELEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/SENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/CONTROL_UNIT"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/ACTUATOR"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/HYDRAULIC_COMPONENT"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/MECHANICAL_COMPONENT"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/OPERATING_ELEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/ELECTRIC_MACHINE"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/ENERGY_STORAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="product_architecture.ecore#//ComponentKind/POWER_ELECTRONICS"/>
+    </genEnums>
+    <genClasses ecoreClass="product_architecture.ecore#//ProductArchitectureRepository">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_architecture.ecore#//ProductArchitectureRepository/generation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_architecture.ecore#//ProductArchitectureRepository/predecessor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference product_architecture.ecore#//ProductArchitectureRepository/components"/>
+    </genClasses>
+    <genClasses ecoreClass="product_architecture.ecore#//ProductComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_architecture.ecore#//ProductComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_architecture.ecore#//ProductComponent/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute product_architecture.ecore#//ProductComponent/kind"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_architecture.ecore#//ProductComponent/parent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_architecture.ecore#//ProductComponent/allocatedFunctions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference product_architecture.ecore#//ProductComponent/satisfies"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

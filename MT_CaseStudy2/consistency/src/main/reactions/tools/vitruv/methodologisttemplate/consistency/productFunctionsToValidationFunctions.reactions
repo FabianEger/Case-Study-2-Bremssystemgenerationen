@@ -1,0 +1,37 @@
+import cameo_functions.FunctionsRepository
+
+import "http://vitruv.tools/product_functions" as productFunctions
+import "http://vitruv.tools/cameo_functions" as functions
+
+// Case Study 2 - generation carry-over of the VE functional architecture.
+//
+// When the product developer derives generation G from generation P (slide 3, step 2: the system
+// model of P is taken over as the basis of G), every VE function tagged with P is carried over
+// to G (Cameo tag 'Generation' of TaggedFunction). New VE functions for G are added by the
+// validation engineer (step 17) - they are not derived automatically.
+//
+reactions: productFunctionsToValidationFunctions
+in reaction to changes in productFunctions
+execute actions in functions
+
+reaction ProductFunctionsRepositoryInsertedAsRoot {
+	after element productFunctions::ProductFunctionsRepository inserted as root
+	with newValue.predecessor !== null
+	call carryOverValidationFunctions(newValue)
+}
+
+routine carryOverValidationFunctions(productFunctions::ProductFunctionsRepository functionsRepository) {
+	update {
+		val veFunctions = functionsRepository.eResource.resourceSet.resources
+			.flatMap[contents].filter(FunctionsRepository).head
+		if (veFunctions !== null) {
+			val predecessorGeneration = functionsRepository.predecessor.generation
+			for (veFunction : veFunctions.functions) {
+				if (veFunction.generations.contains(predecessorGeneration)
+					&& !veFunction.generations.contains(functionsRepository.generation)) {
+					veFunction.generations.add(functionsRepository.generation)
+				}
+			}
+		}
+	}
+}

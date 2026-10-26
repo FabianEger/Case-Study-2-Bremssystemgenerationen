@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated simuLink -->
+      <package
+            uri="edu.kit.ipd.sdq.metamodels.simulink"
+            class="simulink.SimuLinkPackage"
+            genModel="src/main/ecore/simuLink.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sysml -->
+      <package
+            uri="http://vitruv.tools/methodologisttemplate/sysml"
+            class="sysml.SysmlPackage"
+            genModel="src/main/ecore/sysml.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated cameo_architecture -->
+      <package
+            uri="http://vitruv.tools/cameo_architecture"
+            class="cameo_architecture.Cameo_architecturePackage"
+            genModel="src/main/ecore/cameo_architecture.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated cameo_functions -->
+      <package
+            uri="http://vitruv.tools/cameo_functions"
+            class="cameo_functions.Cameo_functionsPackage"
+            genModel="src/main/ecore/cameo_functions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated cameo_requirements -->
+      <package
+            uri="http://vitruv.tools/cameo_requirements"
+            class="cameo_requirements.Cameo_requirementsPackage"
+            genModel="src/main/ecore/cameo_requirements.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated product_requirements -->
+      <package
+            uri="http://vitruv.tools/product_requirements"
+            class="product_requirements.Product_requirementsPackage"
+            genModel="src/main/ecore/product_requirements.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated product_functions -->
+      <package
+            uri="http://vitruv.tools/product_functions"
+            class="product_functions.Product_functionsPackage"
+            genModel="src/main/ecore/product_functions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated product_architecture -->
+      <package
+            uri="http://vitruv.tools/product_architecture"
+            class="product_architecture.Product_architecturePackage"
+            genModel="src/main/ecore/product_architecture.genmodel"/>
+   </extension>
+
+</plugin>

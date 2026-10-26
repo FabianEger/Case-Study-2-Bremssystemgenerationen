@@ -1,0 +1,44 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_requirements" as requirements
+import "http://vitruv.tools/cameo_architecture" as architecture
+
+reactions: architectureToRequirements
+in reaction to changes in architecture
+execute actions in requirements
+
+reaction BlockInsertedIntoRepository {
+	after element architecture::Block inserted in architecture::BlockRepository[blocks]
+	call createRequirementForBlock(affectedEObject, newValue)
+}
+
+routine createRequirementForBlock(architecture::BlockRepository blockRepository,
+		architecture::Block block) {
+	match {
+		require absence of requirements::Requirement corresponding to block
+		val requirementsRepository = retrieve requirements::RequirementsRepository corresponding to blockRepository
+	}
+	create {
+		val requirement = new requirements::Requirement
+	}
+	update {
+		requirement.name = block.name
+		requirement.text = block.name
+		requirementsRepository.requirements.add(requirement)
+		addCorrespondenceBetween(block, requirement)
+	}
+}
+
+reaction BlockRenamed {
+	after attribute replaced at architecture::Block[name]
+	call propagateBlockName(affectedEObject)
+}
+
+routine propagateBlockName(architecture::Block block) {
+	match {
+		val requirement = retrieve requirements::Requirement corresponding to block
+	}
+	update {
+		requirement.name = block.name
+	}
+}

@@ -1,0 +1,22 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_functions" as functions
+import "http://vitruv.tools/cameo_architecture" as architecture
+
+reactions: architectureToFunctions
+in reaction to changes in architecture
+execute actions in functions
+
+reaction BlockRenamed {
+	after attribute replaced at architecture::Block[name]
+	call propagateBlockName(affectedEObject)
+}
+
+routine propagateBlockName(architecture::Block block) {
+	match {
+		val function = retrieve functions::Function corresponding to block
+	}
+	update {
+		function.name = block.name
+	}
+}

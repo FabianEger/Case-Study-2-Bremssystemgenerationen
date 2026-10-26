@@ -1,0 +1,78 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_architecture" as architecture
+import "edu.kit.ipd.sdq.metamodels.simulink" as simulink
+
+reactions: architectureToSimulink
+in reaction to changes in architecture
+execute actions in simulink
+
+reaction BlockRepositoryInsertedAsRoot {
+	after element architecture::BlockRepository inserted as root
+	call createCorrespondingSimulinkModel(newValue)
+}
+
+routine createCorrespondingSimulinkModel(architecture::BlockRepository blockRepository) {
+	match {
+		require absence of simulink::SimulinkModel corresponding to blockRepository
+	}
+	create {
+		val simulinkModel = new simulink::SimulinkModel
+	}
+	update {
+		simulinkModel.version = "1.0"
+		persistProjectRelative(blockRepository, simulinkModel,
+			new File("").toString() + "cameo.simulink")
+		addCorrespondenceBetween(blockRepository, simulinkModel)
+	}
+}
+
+reaction BlockInsertedIntoRepository {
+	after element architecture::Block inserted in architecture::BlockRepository[blocks]
+	call createSubSystemForBlock(affectedEObject, newValue)
+}
+
+routine createSubSystemForBlock(architecture::BlockRepository blockRepository,
+		architecture::Block block) {
+	match {
+		require absence of simulink::SubSystem corresponding to block
+		val simulinkModel = retrieve simulink::SimulinkModel corresponding to blockRepository
+	}
+	create {
+		val subSystem = new simulink::SubSystem
+	}
+	update {
+		subSystem.name = block.name
+		simulinkModel.contains.add(subSystem)
+		addCorrespondenceBetween(block, subSystem)
+	}
+}
+
+reaction BlockRenamed {
+	after attribute replaced at architecture::Block[name]
+	call propagateBlockNameToSubSystem(affectedEObject)
+}
+
+routine propagateBlockNameToSubSystem(architecture::Block block) {
+	match {
+		val subSystem = retrieve simulink::SubSystem corresponding to block
+	}
+	update {
+		subSystem.name = block.name
+	}
+}
+
+reaction BlockRemovedFromRepository {
+	after element architecture::Block removed from architecture::BlockRepository[blocks]
+	call deleteSubSystemForBlock(oldValue)
+}
+
+routine deleteSubSystemForBlock(architecture::Block block) {
+	match {
+		val subSystem = retrieve simulink::SubSystem corresponding to block
+	}
+	update {
+		removeObject(subSystem)
+		removeCorrespondenceBetween(block, subSystem)
+	}
+}

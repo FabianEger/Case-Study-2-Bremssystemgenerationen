@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="product_requirements" nsURI="http://vitruv.tools/product_requirements"
+    nsPrefix="product_requirements">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Case Study 2: product developer view on the requirements of one brake-system generation (Cameo 'Anforderungsliste'). One repository per product generation (Gn-1, Gn, Gn+1)."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductRequirementsRepository">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Product generation this model describes, e.g. 'Gn-1', 'Gn', 'Gn+1'."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//ProductRequirementsRepository">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Requirements model of the generation this generation was derived from (null for the baseline generation)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
+        eType="#//ProductRequirement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//RequirementKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ProductRequirement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Containing requirement in the Cameo requirement hierarchy (e.g. 23.3 for 23.3.1)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RequirementKind">
+    <eLiterals name="FUNCTIONAL"/>
+    <eLiterals name="NON_FUNCTIONAL" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

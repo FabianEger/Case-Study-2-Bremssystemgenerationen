@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cameo_requirements:RequirementsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cameo_requirements="http://vitruv.tools/cameo_requirements">
+  <requirements text="The braking system test bench shall support braking force or equivalent braking torque levels in a controlled and repeatable manner, enabling evaluation of braking behavior under different braking intensities across all operating modes." Id="1.1" name="BrakingWithVariousBrakeForce" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall allow emergency braking operations decelerating a rotating brake component from 50 km/h to 0 km/h using the maximum available brake force" Id="1.2" name="EmergencyBrakeFrom50" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall support repeated braking cycles with variable brake force without the rotating brake component coming to a complete stop." Id="1.3" name="RepeatedBrakingWithoutStopingTheRotationOfTheBrakeDisc" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall allow braking operations with both forward and reverse rotation, including the reversal of the rotational direction of the brake component." Id="1.4" name="BrakingOperationsWithForwardAndReverseRotation" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>Variables in braking</categories>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="Parking brake mechanism can be easily integrated into the drum brake assembly without requiring additional systems" Id="1.5" name="Integrated Parking Brake Functionality" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="Drum brakes can generate high braking force with relatively low hydraulic pressure due to the self-energizing effect." Id="1.6" name="High Braking Force at Low Pressure" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="All load-bearing components shall be designed to withstand the maximum expected operational loads without failure or critical crack formation." Id="2.1" name="NoFailureUnderMaxLoad" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="All rotating components shall be designed to withstand the maximum operating speed without structural failure, excessive vibration, or critical resonance." Id="2.2" name="NoFailureUnderMaxSpeed" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The system shall prevent resonance effects from vibrations induced by braking forces or other actuators such as electric machines." Id="2.3" name="NoCriticalEigenfrequencies" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The bearing arrangement should have maximize tilting rigidity and effectively absorb external forces and torques applied outside the bearing span (from the electric machine and braking system)." Id="2.4" name="Bearing Arrangement for Operational Loads" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The bearing concept shall support the radial and axial forces applied without introducing mechanical overconstraints or preload under normal operating conditions." Id="2.5" name="BearingSufficientlyDimensioned" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="All physical components of the system shall be manufacturable using conventional techniques such as turning, milling, laser cutting, and welding." Id="2.6" name="ManufacturableByConventionalMethods" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="It tends to increase preload as the shaft expands (due to heat), which can be beneficial in high-temperature environments where stability is required." Id="2.7" name="Thermal Expansion Accommodation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="More tolerant of misalignment between shaft and housing." Id="2.8" name="Alignment Stability">
+    <generations>Gn-1</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The spread of the contact lines (large effective span between load centers) gives the system greater resistance to tilting and bending moments." Id="2.9" name="High Torsional Rigidity">
+    <generations>Gn-1</generations>
+    <categories>Bearing</categories>
+  </requirements>
+  <requirements text="The second electric machine shall simulate realistic road load conditions including rolling resistance, aerodynamic drag, and gradient forces" Id="4.1" name="Road Load Simulation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The second electric machine shall apply both positive and negative torque to simulate uphill, downhill, and braking conditions." Id="4.5" name="Bidirectional Torque Capability" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The second electric machine shall include protection mechanisms to prevent damage under overload, excessive slip, or unexpected torque spikes during test scenarios." Id="4.6" name="Safety and Overload Protection" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Second Electric Machine</categories>
+  </requirements>
+  <requirements text="The system shall simulate emergency braking maneuvers at varying speeds to assess ABS effectiveness in reducing stopping distance" Id="4.7" name="Emergency Braking Scenarios" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="The test bench shall allow rapid modulation of brake torque to validate ABS response during lock-up prevention" Id="4.8" name="Brake Torque Modulation" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Test Bench along with ABS</categories>
+  </requirements>
+  <requirements text="It shall be possible to change the friction conditions by applying defined fluids (e.g., oil, water) without requiring extensive modifications to the setup." Id="4.11" name="Friction Change due to Fluid Application" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Brake Friction Modification</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The mechanical interface shall allow simple exchange of the brake system under test using standard tools, without major structural modifications." Id="5.1" name="Easy Brake System Exchange" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Modular Platform</categories>
+    <categories>Braking System</categories>
+  </requirements>
+  <requirements text="The brake caliper must be mounted laterally to the brake disc to enable compatibility with different brake system geometries." Id="5.2" name="EasyExchangeBrakeCaliper" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Modular Platform</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The brake caliper holder must allow quick repositioning of the brake caliper in all three spatial directions using elongated holes or equivalent adjustment features." Id="5.3" name="AdjustablePositionBrakeCaliper" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Modular Platform</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="The brake caliper holder shall minimize the lever arm relative to the braking force to reduce structural loads." Id="5.4" name="ShortLeverArmBrakeCaliperHolder" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="Drum brakes can be packaged more easily within smaller wheel sizes compared to disc brakes, supporting compact vehicle designs." Id="5.5" name="Compatibility with Smaller Wheel Sizes" status="IMAGINARY" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Drum Brake</categories>
+  </requirements>
+  <requirements text="It shall be possible to change the friction conditions by replacing the friction material without requiring major changes to the test environment." Id="5.6" name="FrictionChangeByPadReplacement" classification="DERIVED_FROM_PRODUCT_TEST_CASE">
+    <generations>Gn-1</generations>
+    <categories>Brake Friction Modification</categories>
+    <categories>Brake Caliper</categories>
+  </requirements>
+  <requirements text="Sensors (e.g., force, temperature, rotational speed) shall be placed close to the system under test while being protected against brake dust, heat, and fluids." Id="6.2" name="Sensor Integration and Protection" classification="DERIVED_FROM_TEST_BENCH_ITSELF">
+    <generations>Gn-1</generations>
+    <categories>General</categories>
+  </requirements>
+  <requirements text="The validation environment shall synchronously acquire all relevant measurement signals required for brake system validation." Id="6.7" name="Synchronized Signal Acquisition">
+    <generations>Gn-1</generations>
+  </requirements>
+</cameo_requirements:RequirementsRepository>

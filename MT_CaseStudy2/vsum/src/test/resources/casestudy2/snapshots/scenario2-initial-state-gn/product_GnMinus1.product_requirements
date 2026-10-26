@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<product_requirements:ProductRequirementsRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:product_requirements="http://vitruv.tools/product_requirements" generation="Gn-1">
+  <requirements Id="23" name="Gesamtfahrzeug verz&#xf6;gern und feststellen" text="Gesamtfahrzeug sowohl verz&#xf6;gern als auch feststellen k&#xf6;nnen"/>
+  <requirements Id="23.1" name="Eingabeeinrichtung" text="Nur eine Eingabeeinrichtung darf vorhanden sein.&#xA;Muss das Bremsen erm&#xf6;glichen w&#xe4;hrend beide H&#xe4;nde am Steuer sind." parent="//@requirements.0"/>
+  <requirements Id="23.1.1" name="Eingabekraft verst&#xe4;rken" text="Muss die Muskelkraft auf ein Ma&#xdf; erh&#xf6;hen, sodass die geforderten Bremswerte erreicht werden" parent="//@requirements.1"/>
+  <requirements Id="23.1.2" name="Bremsassistent" text="Erkennt eine Gefahrenbremsung und unterst&#xfc;tzt den Fahrer dabei eine Vollbremsung einzuleiten" parent="//@requirements.1"/>
+  <requirements Id="23.1.3" name="Aus Metall gefertigt" text="Muss aus Metall gefertigt sein, falls Versagen eine Hilfsbremsung unm&#xf6;glich macht" kind="NON_FUNCTIONAL" parent="//@requirements.1"/>
+  <requirements Id="23.2" name="R&#xe4;der verz&#xf6;gern" text="Verz&#xf6;gern der Fahrzeugr&#xe4;der" parent="//@requirements.0"/>
+  <requirements Id="23.2.1" name="Automatische Nachstellung aufgrund Verschlei&#xdf;" text="Verschlei&#xdf;bedingte Toleranzen m&#xfc;ssen automatisch ausgeglichen werden" parent="//@requirements.5"/>
+  <requirements Id="23.2.2" name="Redundanz" text="Aufteilung in Betriebsbrems- und Hilfsbremssystem.&#xA;Dabei muss HBS noch funktionsf&#xe4;hig sein wenn nicht mehr als eine St&#xf6;rung im BBS vorhanden ist" parent="//@requirements.5"/>
+  <requirements Id="23.2.3" name="Dauerleistung" text="Muss f&#xfc;r l&#xe4;ngere Talfahrten ausreichen" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.4" name="Ansprechzeit" text="Muss im ung&#xfc;nstigsten Achsfall innerhalb von 0,6s geforderte Bremswirkung stellen" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.5" name="Standfestigkeit" text="Muss gegen&#xfc;ber Alterung und Korrosion Standfest sein" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.6" name="Frei von Asbest" text="Bremsbel&#xe4;ge m&#xfc;ssen frei von Asbest sein" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.7" name="abstufbar" text="Bremsung muss dosierbar sein." kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.8" name="sinnvolle Bremskraftverteilung" text="Bremskraftverteilung zwischen Achsen muss in anbetracht der Fahrzeugdynamik sinnvoll gew&#xe4;hlt werden" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.9" name="Mittlere Vollverz&#xf6;gerung der Betriebsbremse" text="ausgekuppelter Motor: >6,43 m/s^2&#xA;beladen mit ungebremsten Anh&#xe4;nger: >5,4 m/s^2" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.2.10" name="Mittlere Vollverz&#xf6;gerung des Hilfsbremssystems" text=">2,44 m/s^2" kind="NON_FUNCTIONAL" parent="//@requirements.5"/>
+  <requirements Id="23.3" name="Stabilit&#xe4;t sicherstellen" text="Fahrzeug stabilit&#xe4;t muss immer sichergestellt sein" parent="//@requirements.0"/>
+  <requirements Id="23.3.2" name="Elektronisches Fahrdynamik-Regelsystem" text="Hat das Fahrzeug durch Bremseingriffe zu stabilisieren" parent="//@requirements.16"/>
+  <requirements Id="23.3.2.1" name="F&#xe4;hig an allen R&#xe4;dern zu wirken" text="Muss an jedem Rad wirken k&#xf6;nnen" parent="//@requirements.17"/>
+  <requirements Id="23.3.2.2" name="Geschwindigkeitsbereich" text="(au&#xdf;er wenn ausgeschaltet) &#xfc;ber gesamten Geschwindigkeitsbereich >20 km/h aktiv" kind="NON_FUNCTIONAL" parent="//@requirements.17"/>
+  <requirements Id="23.3.2.3" name="Bleibt aktiviert trotz ABS und ASR" text="Funktionsf&#xe4;hig trotz ABS und ASR Eingriff" parent="//@requirements.17"/>
+  <requirements Id="23.3.3" name="Traktionskontrolle" text="Kontrolliert den Reifenschlupf" parent="//@requirements.16"/>
+  <requirements Id="23.4" name="St&#xf6;rungen erkennen" text="Erkennen von St&#xf6;rungen in den verschiedenen Teilsystemen" parent="//@requirements.0"/>
+  <requirements Id="23.4.1" name="Verschlei&#xdf; erkennen" text="Erkennen des Verschlei&#xdf;zustandes der Bremsbel&#xe4;ge" parent="//@requirements.22"/>
+  <requirements Id="23.5" name="Fahrzeug feststellen" text="Sichern des Fahrzeuges (+ Gespann) gegen wegrollen" parent="//@requirements.0"/>
+  <requirements Id="23.5.1" name="Mittlere Verz&#xf6;gerung der Feststellbremse" text="> 1,5 m/s^2" kind="NON_FUNCTIONAL" parent="//@requirements.24"/>
+  <requirements Id="23.5.2" name="St&#xf6;rungssicherheit bei ausl&#xf6;sen" text="Darf bei St&#xf6;rung der Elektrik nicht selbstst&#xe4;ndig wirken" kind="NON_FUNCTIONAL" parent="//@requirements.24"/>
+  <requirements Id="23.6" name="Kommunikation mit ECU" text="Kommunikation mit dem System Fahrzeug" parent="//@requirements.0"/>
+  <requirements Id="23.6.1" name="St&#xf6;rung melden" text="Erkannte St&#xf6;rungen an Fahrzeugsteuerger&#xe4;t weitergeben" parent="//@requirements.27"/>
+  <requirements Id="23.7" name="Unempfindlichkeit gegen&#xfc;ber externen Einfl&#xfc;ssen" text="Wirksamkeit darf nicht durch elektrische oder magnetische Felder eingeschr&#xe4;nkt werden" kind="NON_FUNCTIONAL" parent="//@requirements.0"/>
+</product_requirements:ProductRequirementsRepository>

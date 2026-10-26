@@ -1,0 +1,160 @@
+import cameo_requirements.RequirementsRepository
+import cameo_requirements.RequirementClassification
+import cameo_requirements.ValidationStatus
+
+import "http://vitruv.tools/product_functions" as productFunctions
+import "http://vitruv.tools/cameo_requirements" as requirements
+
+// Case Study 2 - CPRs "1": product functions -> validation-environment (VE) requirements.
+//
+// Purpose (slide 2): derive the validation requirements that result from new or changed
+// product functions of a brake-system generation.
+//
+// - Registering the functions model of a new generation G with predecessor P links it to the
+// VE requirements model and carries all VE requirements of P over to G (tag 'generation').
+// - A function inserted into G that already exists in P (same name and same generalisation) is
+// a carried-over function: it is linked to the validation needs of its predecessor, nothing new
+// is derived.
+// - A function that is new in G yields an (imaginary) validation need in the VE requirements model,
+// tagged with G, which the validation engineer concretises afterwards (step 16).
+// - Renaming a function flags its validation needs for review; removing a function from G only
+// removes G from the generation tags of its validation needs (generation-scoped deletion), because
+// the needs may still be required by other generations.
+// - The baseline generation (no predecessor) derives nothing: its VE already exists.
+//
+reactions: productFunctionsToValidationRequirements
+in reaction to changes in productFunctions
+execute actions in requirements
+
+reaction ProductFunctionsRepositoryInsertedAsRoot {
+	after element productFunctions::ProductFunctionsRepository inserted as root
+	call registerFunctionsGeneration(newValue)
+}
+
+routine registerFunctionsGeneration(productFunctions::ProductFunctionsRepository functionsRepository) {
+	match {
+		require absence of requirements::RequirementsRepository corresponding to functionsRepository tagged "CS2-VE"
+	}
+	update {
+		val veRepository = functionsRepository.eResource.resourceSet.resources
+			.flatMap[contents].filter(RequirementsRepository).head
+		if (veRepository === null) {
+			System.out.println("[CS2][CPR1] No validation-environment requirements model found for generation "
+				+ functionsRepository.generation + " - register the VE models first.")
+		} else {
+			addCorrespondenceBetween(functionsRepository, veRepository, "CS2-VE")
+			val predecessor = functionsRepository.predecessor
+			if (predecessor !== null) {
+				for (veRequirement : veRepository.requirements) {
+					if (veRequirement.generations.contains(predecessor.generation)
+						&& !veRequirement.generations.contains(functionsRepository.generation)) {
+						veRequirement.generations.add(functionsRepository.generation)
+					}
+				}
+			}
+		}
+	}
+}
+
+reaction ProductFunctionInserted {
+	after element productFunctions::ProductFunction inserted in productFunctions::ProductFunctionsRepository[functions]
+	call handleProductFunctionInserted(affectedEObject, newValue)
+}
+
+routine handleProductFunctionInserted(productFunctions::ProductFunctionsRepository functionsRepository,
+		productFunctions::ProductFunction function) {
+	update {
+		val predecessor = functionsRepository.predecessor
+		if (predecessor !== null) {
+			val carriedOver = predecessor.functions.findFirst [ f |
+				f.name == function.name && f.general?.name == function.general?.name
+			]
+			if (carriedOver !== null) {
+				linkCarriedOverFunction(function, carriedOver, functionsRepository)
+			} else {
+				deriveValidationNeedForFunction(function, functionsRepository)
+			}
+		}
+	}
+}
+
+routine linkCarriedOverFunction(productFunctions::ProductFunction function,
+		productFunctions::ProductFunction predecessorFunction,
+		productFunctions::ProductFunctionsRepository functionsRepository) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to predecessorFunction tagged "CPR1"
+	}
+	update {
+		for (need : validationNeeds) {
+			if (!need.generations.contains(functionsRepository.generation)) {
+				need.generations.add(functionsRepository.generation)
+			}
+			addCorrespondenceBetween(function, need, "CPR1")
+		}
+	}
+}
+
+routine deriveValidationNeedForFunction(productFunctions::ProductFunction function,
+		productFunctions::ProductFunctionsRepository functionsRepository) {
+	match {
+		require absence of requirements::Requirement corresponding to function tagged "CPR1"
+		val veRepository = retrieve requirements::RequirementsRepository corresponding to functionsRepository tagged "CS2-VE"
+	}
+	create {
+		val need = new requirements::Requirement
+	}
+	update {
+		val idPrefix = "VN-" + functionsRepository.generation + "-F-"
+		val number = veRepository.requirements.filter[getId !== null && getId.startsWith(idPrefix)].size + 1
+		need.setId(idPrefix + String.format("%02d", number))
+		need.name = "Validation need: product function '" + function.name + "'"
+		need.text = "Derived by CPR 1 from the product function '" + function.name + "' introduced in generation "
+			+ functionsRepository.generation + ". The validation environment shall enable the validation of this function;"
+			+ " validation objectives, stimuli and measured variables are to be concretised by the validation engineer."
+		need.status = ValidationStatus.IMAGINARY
+		need.classification = RequirementClassification.VALIDATION_NEED_FROM_PRODUCT_FUNCTION
+		need.generations.add(functionsRepository.generation)
+		need.categories.add("Validation need")
+		veRepository.requirements.add(need)
+		addCorrespondenceBetween(function, need, "CPR1")
+	}
+}
+
+reaction ProductFunctionRenamed {
+	after attribute replaced at productFunctions::ProductFunction[name]
+	with oldValue !== null && newValue != oldValue
+	call flagValidationNeedsOfRenamedFunction(affectedEObject, oldValue)
+}
+
+routine flagValidationNeedsOfRenamedFunction(productFunctions::ProductFunction function, plain String as oldName) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to function tagged "CPR1"
+	}
+	update {
+		for (need : validationNeeds) {
+			need.reviewRequired = true
+			need.text = need.text + " [Review: product function renamed from '" + oldName + "' to '" + function.name + "']"
+		}
+	}
+}
+
+reaction ProductFunctionRemoved {
+	after element productFunctions::ProductFunction removed from productFunctions::ProductFunctionsRepository[functions]
+	call removeGenerationFromValidationNeedsOfFunction(affectedEObject, oldValue)
+}
+
+routine removeGenerationFromValidationNeedsOfFunction(productFunctions::ProductFunctionsRepository functionsRepository,
+		productFunctions::ProductFunction function) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to function tagged "CPR1"
+	}
+	update {
+		for (need : validationNeeds) {
+			need.generations.remove(functionsRepository.generation)
+			removeCorrespondenceBetween(function, need, "CPR1")
+			if (need.generations.empty) {
+				need.reviewRequired = true
+			}
+		}
+	}
+}

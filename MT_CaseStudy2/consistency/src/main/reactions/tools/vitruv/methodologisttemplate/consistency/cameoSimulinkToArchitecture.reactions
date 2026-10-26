@@ -1,0 +1,56 @@
+import "http://vitruv.tools/cameo_architecture" as architecture
+import "edu.kit.ipd.sdq.metamodels.simulink" as simulink
+
+reactions: simulinkToArchitecture
+in reaction to changes in simulink
+execute actions in architecture
+
+reaction SubSystemInsertedIntoSimulinkModel {
+	after element simulink::SubSystem inserted in simulink::SimulinkModel[contains]
+	call createBlockForSubSystem(affectedEObject, newValue)
+}
+
+routine createBlockForSubSystem(simulink::SimulinkModel simulinkModel,
+		simulink::SubSystem subSystem) {
+	match {
+		require absence of architecture::Block corresponding to subSystem
+		val blockRepository = retrieve architecture::BlockRepository corresponding to simulinkModel
+	}
+	create {
+		val block = new architecture::Block
+	}
+	update {
+		block.name = subSystem.name
+		blockRepository.blocks.add(block)
+		addCorrespondenceBetween(block, subSystem)
+	}
+}
+
+reaction SubSystemRenamed {
+	after attribute replaced at simulink::SubSystem[name]
+	call propagateSubSystemNameToBlock(affectedEObject)
+}
+
+routine propagateSubSystemNameToBlock(simulink::SubSystem subSystem) {
+	match {
+		val block = retrieve architecture::Block corresponding to subSystem
+	}
+	update {
+		block.name = subSystem.name
+	}
+}
+
+reaction SubSystemRemovedFromSimulinkModel {
+	after element simulink::SubSystem removed from simulink::SimulinkModel[contains]
+	call deleteBlockForSubSystem(oldValue)
+}
+
+routine deleteBlockForSubSystem(simulink::SubSystem subSystem) {
+	match {
+		val block = retrieve architecture::Block corresponding to subSystem
+	}
+	update {
+		removeObject(block)
+		removeCorrespondenceBetween(block, subSystem)
+	}
+}

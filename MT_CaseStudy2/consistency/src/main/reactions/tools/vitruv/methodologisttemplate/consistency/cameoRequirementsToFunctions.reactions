@@ -1,0 +1,84 @@
+import java.io.File;
+
+import "http://vitruv.tools/cameo_requirements" as requirements
+import "http://vitruv.tools/cameo_functions" as functions
+
+reactions: requirementsToFunctions
+in reaction to changes in requirements
+execute actions in functions
+
+reaction RequirementsRepositoryInsertedAsRoot {
+	after element requirements::RequirementsRepository inserted as root
+	call createCorrespondingFunctionsRepository(newValue)
+}
+
+routine createCorrespondingFunctionsRepository(requirements::RequirementsRepository requirementsRepository) {
+	match {
+		require absence of functions::FunctionsRepository corresponding to requirementsRepository
+	}
+	create {
+		val functionsRepository = new functions::FunctionsRepository
+	}
+	update {
+		persistProjectRelative(requirementsRepository, functionsRepository,
+			new File("").toString() + "cameo.cameo_functions")
+		addCorrespondenceBetween(requirementsRepository, functionsRepository)
+	}
+}
+
+reaction RequirementInsertedIntoRepository {
+	after element requirements::Requirement inserted in requirements::RequirementsRepository[requirements]
+	call createFunctionForRequirement(affectedEObject, newValue)
+}
+
+routine createFunctionForRequirement(requirements::RequirementsRepository requirementsRepository,
+		requirements::Requirement requirement) {
+	match {
+		require absence of functions::Function corresponding to requirement
+		val functionsRepository = retrieve functions::FunctionsRepository corresponding to requirementsRepository
+	}
+	create {
+		val function = new functions::Function
+	}
+	update {
+		System.out.println("Creating function for requirement: " + requirement.name);
+		function.name = requirement.name
+		System.out.println("Function name: " + function.name);
+		functionsRepository.functions.add(function)
+		addCorrespondenceBetween(requirement, function)
+	}
+}
+
+
+reaction RequirementRenamed {
+	after attribute replaced at requirements::Requirement[name]
+	call propagateRequirementName(affectedEObject)
+}
+
+routine propagateRequirementName(requirements::Requirement requirement) {
+	
+	match {
+		val function = retrieve functions::Function corresponding to requirement
+	}
+	update {
+		System.out.println("Propagating requirement name: " + requirement.name);
+		function.name = requirement.name
+		System.out.println("Function name: " + function.name);
+		System.out.println("Propagated requirement name: " + requirement.name);
+	}
+}
+
+reaction RequirementRemovedFromRepository {
+	after element requirements::Requirement removed from requirements::RequirementsRepository[requirements]
+	call deleteFunctionForRequirement(oldValue)
+}
+
+routine deleteFunctionForRequirement(requirements::Requirement requirement) {
+	match {
+		val function = retrieve functions::Function corresponding to requirement
+	}
+	update {
+		removeObject(function)
+		removeCorrespondenceBetween(requirement, function)
+	}
+}

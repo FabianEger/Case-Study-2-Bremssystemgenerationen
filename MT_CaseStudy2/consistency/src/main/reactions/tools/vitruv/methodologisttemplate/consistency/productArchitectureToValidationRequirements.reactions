@@ -1,0 +1,221 @@
+import cameo_requirements.RequirementsRepository
+import cameo_requirements.RequirementClassification
+import cameo_requirements.ValidationStatus
+import product_architecture.ComponentKind
+
+import "http://vitruv.tools/product_architecture" as productArchitecture
+import "http://vitruv.tools/cameo_requirements" as requirements
+
+// Case Study 2 - CPRs "2": product architecture -> validation-environment (VE) requirements.
+//
+// Purpose (slide 2): derive the requirements on the validation environment that result from new or
+// changed product components (sensors, control units, hydraulic actuators, electric drive train, ...).
+//
+// - A component is identified across generations by its name AND the name of its owning structure
+//   element (e.g. 'Rekuperationseinrichtung::Steuergerät' is new in Gn+1 although
+//   'Feststell-Mechanismus::Steuergerät' exists since Gn-1).
+// - A component that is new in generation G yields an imaginary validation need tagged G. Its text
+//   depends on the component kind (measure/simulate a signal, integrate a control unit, ...).
+// - Sensors, operating elements and the electric drive train need stimuli from the rest of the
+//   vehicle. For these the CPR additionally records one aggregated need per generation:
+//   "Extension of the remaining vehicle simulation (G)" (slides 5, 8, 11, 12). The simulation
+//   itself is not changed.
+// - Carried-over components are linked to the needs of their predecessor; renaming flags the needs for
+//   review; removal is generation-scoped (see CPRs "1").
+//
+reactions: productArchitectureToValidationRequirements
+in reaction to changes in productArchitecture
+execute actions in requirements
+
+reaction ProductArchitectureRepositoryInsertedAsRoot {
+	after element productArchitecture::ProductArchitectureRepository inserted as root
+	call registerArchitectureGeneration(newValue)
+}
+
+routine registerArchitectureGeneration(productArchitecture::ProductArchitectureRepository architectureRepository) {
+	match {
+		require absence of requirements::RequirementsRepository corresponding to architectureRepository tagged "CS2-VE"
+	}
+	update {
+		val veRepository = architectureRepository.eResource.resourceSet.resources
+			.flatMap[contents].filter(RequirementsRepository).head
+		if (veRepository === null) {
+			System.out.println("[CS2][CPR2] No validation-environment requirements model found for generation "
+				+ architectureRepository.generation + " - register the VE models first.")
+		} else {
+			addCorrespondenceBetween(architectureRepository, veRepository, "CS2-VE")
+		}
+	}
+}
+
+reaction ProductComponentInserted {
+	after element productArchitecture::ProductComponent inserted in productArchitecture::ProductArchitectureRepository[components]
+	call handleProductComponentInserted(affectedEObject, newValue)
+}
+
+routine handleProductComponentInserted(productArchitecture::ProductArchitectureRepository architectureRepository,
+		productArchitecture::ProductComponent component) {
+	update {
+		val predecessor = architectureRepository.predecessor
+		if (predecessor !== null) {
+			val carriedOver = predecessor.components.findFirst [ c |
+				c.name == component.name && c.parent?.name == component.parent?.name
+			]
+			if (carriedOver !== null) {
+				linkCarriedOverComponent(component, carriedOver, architectureRepository)
+			} else {
+				deriveValidationNeedForComponent(component, architectureRepository)
+				if (component.kind == ComponentKind.SENSOR || component.kind == ComponentKind.OPERATING_ELEMENT
+					|| component.kind == ComponentKind.ELECTRIC_MACHINE || component.kind == ComponentKind.ENERGY_STORAGE
+					|| component.kind == ComponentKind.POWER_ELECTRONICS) {
+					createRestVehicleSimulationNeed(architectureRepository)
+					addTriggerToRestVehicleSimulationNeed(architectureRepository, component)
+				}
+			}
+		}
+	}
+}
+
+routine linkCarriedOverComponent(productArchitecture::ProductComponent component,
+		productArchitecture::ProductComponent predecessorComponent,
+		productArchitecture::ProductArchitectureRepository architectureRepository) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to predecessorComponent tagged "CPR2"
+	}
+	update {
+		for (need : validationNeeds) {
+			if (!need.generations.contains(architectureRepository.generation)) {
+				need.generations.add(architectureRepository.generation)
+			}
+			addCorrespondenceBetween(component, need, "CPR2")
+		}
+	}
+}
+
+routine deriveValidationNeedForComponent(productArchitecture::ProductComponent component,
+		productArchitecture::ProductArchitectureRepository architectureRepository) {
+	match {
+		require absence of requirements::Requirement corresponding to component tagged "CPR2"
+		val veRepository = retrieve requirements::RequirementsRepository corresponding to architectureRepository tagged "CS2-VE"
+	}
+	create {
+		val need = new requirements::Requirement
+	}
+	update {
+		val generation = architectureRepository.generation
+		val idPrefix = "VN-" + generation + "-A-"
+		val number = veRepository.requirements.filter[getId !== null && getId.startsWith(idPrefix)].size + 1
+		val qualifiedName = if (component.parent === null) component.name else component.parent.name + "::" + component.name
+		need.setId(idPrefix + String.format("%02d", number))
+		need.name = "Validation need: product component '" + component.name + "'"
+		val shall = switch (component.kind) {
+			case SENSOR:
+				"physically integrate or simulate the measured variable of the sensor '" + component.name
+					+ "' and provide it to the system under test"
+			case CONTROL_UNIT:
+				"support the integration of the control unit '" + component.name
+					+ "' including its electrical and communication interfaces"
+			case ACTUATOR,
+			case HYDRAULIC_COMPONENT:
+				"physically integrate or virtually represent the hydraulic / actuating component '" + component.name
+					+ "' and allow it to be controlled by the system under test"
+			case ELECTRIC_MACHINE,
+			case ENERGY_STORAGE,
+			case POWER_ELECTRONICS:
+				"physically integrate or virtually represent the component '" + component.name
+					+ "' of the electric drive train and its interfaces to the brake system"
+			case OPERATING_ELEMENT:
+				"provide a (simulated) actuation of the operating element '" + component.name + "'"
+			case STRUCTURE_ELEMENT:
+				"integrate the product subsystem '" + component.name + "' into the system under investigation"
+			default:
+				"integrate the product component '" + component.name + "'"
+		}
+		need.text = "Derived by CPR 2 from the product component '" + qualifiedName + "' (" + component.kind
+			+ ") introduced in generation " + generation + ". The validation environment shall " + shall + "."
+		need.status = ValidationStatus.IMAGINARY
+		need.classification = RequirementClassification.VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE
+		need.generations.add(generation)
+		need.categories.add("Validation need")
+		need.restVehicleSimulationAffected = component.kind == ComponentKind.SENSOR
+			|| component.kind == ComponentKind.OPERATING_ELEMENT || component.kind == ComponentKind.ELECTRIC_MACHINE
+			|| component.kind == ComponentKind.ENERGY_STORAGE || component.kind == ComponentKind.POWER_ELECTRONICS
+		veRepository.requirements.add(need)
+		addCorrespondenceBetween(component, need, "CPR2")
+	}
+}
+
+routine createRestVehicleSimulationNeed(productArchitecture::ProductArchitectureRepository architectureRepository) {
+	match {
+		require absence of requirements::Requirement corresponding to architectureRepository tagged "CPR2-RVS"
+		val veRepository = retrieve requirements::RequirementsRepository corresponding to architectureRepository tagged "CS2-VE"
+	}
+	create {
+		val need = new requirements::Requirement
+	}
+	update {
+		val generation = architectureRepository.generation
+		need.setId("VN-" + generation + "-RVS")
+		need.name = "Validation need: extension of the remaining vehicle simulation (" + generation + ")"
+		need.text = "Derived by CPR 2: the remaining vehicle simulation has to be extended so that the driving and braking"
+			+ " states required to validate the new product components of generation " + generation
+			+ " can be represented. Triggered by:"
+		need.status = ValidationStatus.IMAGINARY
+		need.classification = RequirementClassification.VALIDATION_NEED_FROM_PRODUCT_ARCHITECTURE
+		need.generations.add(generation)
+		need.categories.add("Validation need")
+		need.categories.add("Remaining vehicle simulation")
+		need.restVehicleSimulationAffected = true
+		veRepository.requirements.add(need)
+		addCorrespondenceBetween(architectureRepository, need, "CPR2-RVS")
+	}
+}
+
+routine addTriggerToRestVehicleSimulationNeed(productArchitecture::ProductArchitectureRepository architectureRepository,
+		productArchitecture::ProductComponent component) {
+	match {
+		val need = retrieve requirements::Requirement corresponding to architectureRepository tagged "CPR2-RVS"
+	}
+	update {
+		need.text = need.text + " " + component.name + ";"
+	}
+}
+
+reaction ProductComponentRenamed {
+	after attribute replaced at productArchitecture::ProductComponent[name]
+	with oldValue !== null && newValue != oldValue
+	call flagValidationNeedsOfRenamedComponent(affectedEObject, oldValue)
+}
+
+routine flagValidationNeedsOfRenamedComponent(productArchitecture::ProductComponent component, plain String as oldName) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to component tagged "CPR2"
+	}
+	update {
+		for (need : validationNeeds) {
+			need.reviewRequired = true
+			need.text = need.text + " [Review: product component renamed from '" + oldName + "' to '" + component.name + "']"
+		}
+	}
+}
+
+reaction ProductComponentRemoved {
+	after element productArchitecture::ProductComponent removed from productArchitecture::ProductArchitectureRepository[components]
+	call removeGenerationFromValidationNeedsOfComponent(affectedEObject, oldValue)
+}
+
+routine removeGenerationFromValidationNeedsOfComponent(productArchitecture::ProductArchitectureRepository architectureRepository,
+		productArchitecture::ProductComponent component) {
+	match {
+		val validationNeeds = retrieve many requirements::Requirement corresponding to component tagged "CPR2"
+	}
+	update {
+		for (need : validationNeeds) {
+			need.generations.remove(architectureRepository.generation)
+			removeCorrespondenceBetween(component, need, "CPR2")
+			if (need.generations.empty) {
+				need.reviewRequired = true
+			}
+		}
+	}
+}
